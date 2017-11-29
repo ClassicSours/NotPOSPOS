@@ -17,9 +17,12 @@ int main()
            <<"NotPOSPOS  Version 0.1\n"
            <<"======================\n";
   order current;
+  Observable observers;
   keypadController keypad(&current);
   registerController ticket(&inventory,&current);
-  ticket.processOrder();
+  observers.addObserver(&keypad);
+  observers.addObserver(&ticket);
+  ticket.processOrder(&observers);
 
   return 0;
 }

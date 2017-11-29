@@ -6,7 +6,7 @@ class cashierView
 {
   public:
     void displayRunningTotal(order running);
-
+    
     void displayFinalReceipt(order final);
 };
 

@@ -1,8 +1,9 @@
 #ifndef ORDER_H
 #define ORDER_H
 #include "IOrder.h"
+#include "ObserverPattern.cpp"
 
-class order : public IOrder
+class order : public IOrder, public IObserver
 {
   private:
     std::vector<item> itemList;
@@ -18,6 +19,7 @@ class order : public IOrder
     double getTax();
     double getTotal();
     double balance(double);
+    void update();
 };
 
 #endif

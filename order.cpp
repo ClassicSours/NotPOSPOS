@@ -41,3 +41,7 @@ double order::balance(double paid) {
   closed = true;
   return getTotal() - paid;
 }
+
+void order::update() {
+  getSubtotal();
+}

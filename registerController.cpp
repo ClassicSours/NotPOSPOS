@@ -10,7 +10,7 @@ registerController::registerController(StoreInventory * inventory, order * check
   cart = checkout;
 }
 
-void registerController::processOrder()
+void registerController::processOrder(Observable * observers)
 {
   std::string command;
   double option;
@@ -19,7 +19,7 @@ void registerController::processOrder()
   {
     std::cout<<"> ";
     std::cin>>command>>option;
-    
+
     if(command.compare("buy") == 0)
     {
       item add = database->lookup((int)option);
@@ -31,7 +31,13 @@ void registerController::processOrder()
                <<"buy <item sku>\n"
                <<"pay <amount>\n";
     }
+    observers->notifyObservers();
   }while( command.compare("pay") != 0 );
   cart->balance(option);
   screen.displayFinalReceipt(*cart);
+}
+
+
+void registerController::update() {
+  screen.displayRunningTotal(*cart);
 }
